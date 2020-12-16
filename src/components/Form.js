@@ -94,6 +94,8 @@ const Form = (props) => {
       .catch((err) => {
         console.log(err);
       });
+
+      setFormState(stateObj);
   };
 
   return (
