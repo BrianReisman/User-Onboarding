@@ -8,11 +8,11 @@ We've seen many different styles of form management by now -- simple to complex.
 
 ### Task 1: Set Up The Project
 
-- [ ] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
-- [ ] Using `npm`, add the following as dependencies inside your React app:
+- [x] Start off by installing a blank React app by running `npx create-react-app <app-name> --use-npm`.
+- [x] Using `npm`, add the following as dependencies inside your React app:
   - `yup`
   - `axios`
-- [ ] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
+- [x] Create a component file called `Form.js`, import it into your `App.js` file, and place the component in your JSX there.
 
 ### Task 2: MVP
 
@@ -48,6 +48,24 @@ When you get your data back, you will want to do something with it, right? Let's
 - [ ] Set up a state property called `users` that is initialized with an empty array
 - [ ] Every time you make a `POST` request, and get that new user data back, update your `users` state with the new user added to the array
 - [ ] Render `users` in your app. You can use the html pre tag and JSON.stringify() method to display your post request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Task 3: Stretch Goals
 
