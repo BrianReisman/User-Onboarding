@@ -36,9 +36,19 @@ const stateObj = {
 const Form = (props) => {
   const [formState, setFormState] = useState(stateObj);
   const [errors, setErrors] = useState({ ...stateObj, checkbox: "" });
-  // const [btnAble, setBtnAble] = useState(true);
+  const [btnAble, setBtnAble] = useState(true)
 
-  //schema
+
+  //!Review this
+  useEffect(()=>{
+    formSchema.isValid(formState)
+      .then(valid => {
+        console.log(valid)
+        setBtnAble(!valid)
+      })
+  }, [formState])
+
+
   const formSchema = yup.object().shape({
     name: yup.string().required("req"),
     email: yup.string().email("That's no email!").required("req"),
@@ -96,6 +106,7 @@ const Form = (props) => {
       });
 
       setFormState(stateObj);
+      setBtnAble(true);
   };
 
   return (
@@ -134,8 +145,8 @@ const Form = (props) => {
           );
         }
       })}
-      <button>Submit now</button>
-      {/* <button disabled={btnAble}>Submit now</button> */}
+      {/* <button type='submit'>Submit now</button> */}
+      <button disabled={btnAble}>Submit now</button>
     </form>
   );
 };
