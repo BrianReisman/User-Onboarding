@@ -1,4 +1,5 @@
-describe("Selecting", () => {//describe() and context() are the same
+describe("Selecting", () => {
+  //describe() and context() are the same
   beforeEach(() => {
     cy.visit("http://localhost:3000/");
   });
@@ -19,19 +20,33 @@ describe("Selecting", () => {//describe() and context() are the same
   });
 });
 
+const testEmail = 'robin.Paul@aol.com';
+const testPassword = 'house';
+const testName = 'Robin Paul'
+
 describe("Testing user input", () => {
   it("typing it allllll out", () => {
-    cy.get(".name").click().type("test name").should("have.value", "test name");
+    cy.get(".name").click().type(testName).should("have.value", testName);
+    cy.get("button").should("be.disabled");
     cy.get(".email")
       .click()
-      .type("test@aol.com")
-      .should("have.value", "test@aol.com");
+      .type(testEmail)
+      .should("have.value", testEmail);
+    cy.get("button").should("be.disabled");
     cy.get(".password")
       .click()
-      .type("testpassword!")
-      .should("have.value", "testpassword!");
+      .type('fakePassword!')
+      .should("have.value", 'fakePassword!')
+      .clear();
     cy.get("button").should("be.disabled");
     cy.get(":checkbox").click().should("be.checked");
+    cy.get(".password")
+      .click()
+      .type(testPassword)
+      .should("have.value", testPassword);
     cy.get("button").click();
   });
+  it('did the user populate the display div?', ()=>{
+    cy.get('.display').contains(testPassword).contains(testEmail).contains(testName)
+  })
 });

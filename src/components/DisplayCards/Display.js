@@ -3,7 +3,7 @@ import Card from "./Card";
 const Display = (props) => {
   console.log(props.people);
   return (
-    <div>
+    <div className='display'>
       <h2>Meet Our Team!</h2>
       <p>This data you share is NOT secure!</p>
       <ul>
