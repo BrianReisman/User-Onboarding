@@ -20,23 +20,20 @@ describe("Selecting", () => {
   });
 });
 
-const testEmail = 'robin.Paul@aol.com';
-const testPassword = 'house';
-const testName = 'Robin Paul'
+const testEmail = "robin.Paul@aol.com";
+const testPassword = "house";
+const testName = "Robin Paul";
 
 describe("Testing user input", () => {
   it("typing it allllll out", () => {
     cy.get(".name").click().type(testName).should("have.value", testName);
     cy.get("button").should("be.disabled");
-    cy.get(".email")
-      .click()
-      .type(testEmail)
-      .should("have.value", testEmail);
+    cy.get(".email").click().type(testEmail).should("have.value", testEmail);
     cy.get("button").should("be.disabled");
     cy.get(".password")
       .click()
-      .type('fakePassword!')
-      .should("have.value", 'fakePassword!')
+      .type("fakePassword!")
+      .should("have.value", "fakePassword!")
       .clear();
     cy.get("button").should("be.disabled");
     cy.get(":checkbox").click().should("be.checked");
@@ -46,7 +43,10 @@ describe("Testing user input", () => {
       .should("have.value", testPassword);
     cy.get("button").click();
   });
-  it('did the user populate the display div?', ()=>{
-    cy.get('.display').contains(testPassword).contains(testEmail).contains(testName)
-  })
+  it("did the user populate the display div?", () => {
+    cy.get(".display")
+      .contains(testPassword)
+      .contains(testEmail)
+      .contains(testName);
+  });
 });
