@@ -14,6 +14,7 @@ const Input = (props) => {
           onChange={props.changeHandler}
           checked={props.value}
           placeholder={props.placeholder}
+          className={props.className}
         />
       </label>
       {props.errorMessage ? <div>{props.errorMessage}</div> : null}

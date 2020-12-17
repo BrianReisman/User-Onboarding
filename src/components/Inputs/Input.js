@@ -7,6 +7,7 @@ const Input = (props) => {
         {" "}
         Please enter your {props.id}:
         <input
+          className={props.className}
           type={props.type}
           onChange={props.changeHandler}
           id={props.id}

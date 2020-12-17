@@ -36,18 +36,15 @@ const stateObj = {
 const Form = (props) => {
   const [formState, setFormState] = useState(stateObj);
   const [errors, setErrors] = useState({ ...stateObj, checkbox: "" });
-  const [btnAble, setBtnAble] = useState(true)
-
+  const [btnAble, setBtnAble] = useState(true);
 
   //!Review this
-  useEffect(()=>{
-    formSchema.isValid(formState)
-      .then(valid => {
-        console.log(valid)
-        setBtnAble(!valid)
-      })
-  }, [formState])
-
+  useEffect(() => {
+    formSchema.isValid(formState).then((valid) => {
+      console.log(valid);
+      setBtnAble(!valid);
+    });
+  }, [formState]);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("req"),
@@ -89,7 +86,6 @@ const Form = (props) => {
     validateChange(e);
   };
 
-  
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -98,15 +94,15 @@ const Form = (props) => {
       .then((res) => {
         //add to state in App.js
         console.log(res);
-        props.updateList([...props.state, res.data])
+        props.updateList([...props.state, res.data]);
         //clear out state and reset input form here
       })
       .catch((err) => {
         console.log(err);
       });
 
-      setFormState(stateObj);
-      setBtnAble(true);
+    setFormState(stateObj);
+    setBtnAble(true);
   };
 
   return (
@@ -124,20 +120,24 @@ const Form = (props) => {
               value={formState[input.id]}
               changeHandler={onChangeHandler}
               errorMessage={errors[input.id]}
+              className={input.id}
             />
           );
         } else if (input.type === "checkbox") {
           return (
-            <Checkbox
-              key={i}
-              type={input.type}
-              id={input.id}
-              name={input.id}
-              value={formState[input.id]}
-              checked={formState[input.checkbox]}
-              changeHandler={onChangeHandler}
-              errorMessage={errors[input.id]}
-            />
+            <>
+              <Checkbox
+                key={i}
+                type={input.type}
+                id={input.id}
+                name={input.id}
+                className={input.id}
+                value={formState[input.id]}
+                checked={formState[input.checkbox]}
+                changeHandler={onChangeHandler}
+                errorMessage={errors[input.id]}
+              />
+            </>
           );
         } else {
           throw new Error(
@@ -146,7 +146,9 @@ const Form = (props) => {
         }
       })}
       {/* <button type='submit'>Submit now</button> */}
-      <button disabled={btnAble}>Submit now</button>
+      <button disabled={btnAble} className="btn">
+        Submit now
+      </button>
     </form>
   );
 };
